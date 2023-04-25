@@ -78,25 +78,25 @@ def main():
         elif key_lst[pg.K_LEFT]:
             kk_img = pg.transform.rotozoom(kk_img, 45, 1.0)
         """
-        
-        for k, mv in delta.items():
-            if key_lst[k]:
-                kk_rct.move_ip(mv)
-        if check_bound(screen.get_rect(), kk_rct) != (True, True):
+        if tr:
             for k, mv in delta.items():
                 if key_lst[k]:
-                    kk_rct.move_ip(-mv[0], -mv[1])
-        screen.blit(bg_img, [0, 0])
-        screen.blit(kk_img, kk_rct)
-        bb_rect.move_ip(vx, vy)
-        yoko, tate = check_bound(screen.get_rect(), bb_rect)
-        if not yoko:
-            vx *= -1
-        if not tate:
-            vy *= -1
-        screen.blit(bb_img, bb_rect)
-        if kk_rct.colliderect(bb_rect):
-            tr = False
+                    kk_rct.move_ip(mv)
+            if check_bound(screen.get_rect(), kk_rct) != (True, True):
+                for k, mv in delta.items():
+                    if key_lst[k]:
+                        kk_rct.move_ip(-mv[0], -mv[1])
+            screen.blit(bg_img, [0, 0])
+            screen.blit(kk_img, kk_rct)
+            bb_rect.move_ip(vx, vy)
+            yoko, tate = check_bound(screen.get_rect(), bb_rect)
+            if not yoko:
+                vx *= -1
+            if not tate:
+                vy *= -1
+            screen.blit(bb_img, bb_rect)
+            if kk_rct.colliderect(bb_rect):
+                tr = False
         if not tr:
             screen.blit(go_img, (900, 400))
             gotmr += 1
