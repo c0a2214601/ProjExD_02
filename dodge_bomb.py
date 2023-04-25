@@ -86,7 +86,6 @@ def main():
             for k, mv in delta.items():
                 if key_lst[k]:
                     kk_rct.move_ip(-mv[0], -mv[1])
-        
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, kk_rct)
         bb_rect.move_ip(vx, vy)
