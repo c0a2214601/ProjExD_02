@@ -46,6 +46,9 @@ def main():
     bb_rect = bb_img.get_rect()
     bb_rect.center = x, y  #練習3
     tmr = 0
+    tr = True
+    gotmr = 0
+    go_img = pg.transform.rotozoom(kk_img, 180, 1.0)
 
     while True:
         for event in pg.event.get():
@@ -55,6 +58,27 @@ def main():
         tmr += 1
 
         key_lst = pg.key.get_pressed()
+        """
+        if key_lst[pg.K_RIGHT]:
+            kk_img = pg.transform.flip(kk_img, True, False)
+        elif key_lst[pg.K_UP] and key_lst[pg.K_RIGHT]:
+            kk_img = pg.transform.flip(kk_img, True, False)
+            kk_img = pg.transform.rotozoom(kk_img, 45, 1.0)
+        elif key_lst[pg.K_UP]:
+            kk_img = pg.transform.flip(kk_img, True, False)
+            kk_img = pg.transform.rotozoom(kk_img, 90, 1.0)
+        elif key_lst[pg.K_DOWN] and key_lst[pg.K_RIGHT]:
+            kk_img = pg.transform.flip(kk_img, True, False)
+            kk_img = pg.transform.rotozoom(kk_img, 315, 1.0)
+        elif key_lst[pg.K_DOWN]:
+            kk_img = pg.transform.flip(kk_img, True, False)
+            kk_img = pg.transform.rotozoom(kk_img, 270, 1.0)
+        elif key_lst[pg.K_UP] and key_lst[pg.K_LEFT]:
+            kk_img = pg.transform.rotozoom(kk_img, 315, 1.0)
+        elif key_lst[pg.K_LEFT]:
+            kk_img = pg.transform.rotozoom(kk_img, 45, 1.0)
+        """
+        
         for k, mv in delta.items():
             if key_lst[k]:
                 kk_rct.move_ip(mv)
@@ -62,7 +86,7 @@ def main():
             for k, mv in delta.items():
                 if key_lst[k]:
                     kk_rct.move_ip(-mv[0], -mv[1])
-    
+        
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, kk_rct)
         bb_rect.move_ip(vx, vy)
@@ -73,8 +97,12 @@ def main():
             vy *= -1
         screen.blit(bb_img, bb_rect)
         if kk_rct.colliderect(bb_rect):
-            return
-
+            tr = False
+        if not tr:
+            screen.blit(go_img, (900, 400))
+            gotmr += 1
+            if gotmr >= 500:
+                return
         pg.display.update()
         clock.tick(1000)
 
