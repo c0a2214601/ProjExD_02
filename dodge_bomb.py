@@ -77,6 +77,7 @@ def main():
             kk_img = pg.transform.rotozoom(kk_img, 315, 1.0)
         elif key_lst[pg.K_LEFT]:
             kk_img = pg.transform.rotozoom(kk_img, 45, 1.0)
+        追加機能１をやろうとして押したボタンの方に向くようにしたかった。
         """
         if tr:
             for k, mv in delta.items():
