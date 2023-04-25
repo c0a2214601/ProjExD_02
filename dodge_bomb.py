@@ -14,10 +14,10 @@ def main():
     pg.draw.circle(bb_img, (255, 0, 0), (10, 10), 10)
     bb_img.set_colorkey((0, 0, 0))  #練習1
     x, y = random.randint(0, 1600), random.randint(0, 900)
-    screen.blit(bb_img, [x, y])  #練習2
+    #screen.blit(bb_img, [x, y])  #練習2
     vx, vy = +1, +1
     bb_rect = bb_img.get_rect()
-    bb_rect.center = x, y
+    bb_rect.center = x, y  #練習3
     tmr = 0
 
     while True:
